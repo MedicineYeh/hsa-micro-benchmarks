@@ -1,0 +1,7 @@
+output
+obj
+&__OpenCL_vector_copy_kernel.isa
+result.log
+*.brig
+*.hsail
+vector_copy
