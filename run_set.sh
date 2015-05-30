@@ -20,10 +20,33 @@ main() {
         if [ "$?" != "0" ]; then
             continue;
         fi
-        make_n_execute ${file}
+        make_n_execute
+        # Occur some errors while preparing test file
+        if [ "$?" != "0" ]; then
+            continue;
+        fi
         parse_result ./output/${file}
         clean_redundant_files
     done
+}
+
+single_test() {
+    mkdir -p output
+    file=$1
+    if [ -f $file ]; then
+        TIMES=0
+        clean_redundant_files
+        prepare_hsail ${file}
+        # Occur some errors while preparing test file
+        if [ "$?" != "0" ]; then
+            return -1;
+        fi
+        make_n_execute
+        parse_result ./output/$(basename ${file})
+        clean_redundant_files
+    else
+        echo "Could not locate file $1"
+    fi
 }
 
 prepare_hsail() {
@@ -51,7 +74,8 @@ make_n_execute() {
     echo "Make and execute"
     make dump -s
     if [ "$?" != "0" ]; then
-        exit 1;
+        echo "Fail to build. Skipped"
+        return -1;
     fi
 }
 
@@ -69,5 +93,9 @@ clean_redundant_files() {
     if [ -f result.log ]; then rm result.log; fi
 }
 
-main
+if [ "$1" == "" ]; then
+    main
+else
+    single_test $1
+fi
 

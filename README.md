@@ -20,6 +20,8 @@ Those arguments like __TIMES__ are parsed and processed by script in order to ex
 1. Run `./run_set.sh` and the result will be shown on the screen as well as dumped to __output__ folder
 2. Execute `head ./output/*` to see the result manually
 
+* Run `./run_set.sh [TEST SET FILE]` to run a single test. Ex: `./run_set.sh ./test_set/ld_st`
+
 # Normal Build an Test
 * `make` to build
 * `make test` to build and run
