@@ -202,7 +202,7 @@ int main(int argc, char **argv)
     hsa_ext_control_directives_t control_directives;
     memset(&control_directives, 0, sizeof(hsa_ext_control_directives_t));
     hsa_code_object_t code_object;
-    err = hsa_ext_program_finalize(program, isa, 0, control_directives, "", HSA_CODE_OBJECT_TYPE_PROGRAM, &code_object);
+    err = hsa_ext_program_finalize(program, isa, 0, control_directives, "-O0", HSA_CODE_OBJECT_TYPE_PROGRAM, &code_object);
     check(Finalizing the program, err);
 
     /*

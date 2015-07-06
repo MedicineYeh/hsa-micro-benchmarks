@@ -8,20 +8,32 @@ LOOP_SIZE=$((1000 * 10000))
 GREEN="\033[1;32m"
 BLUE="\033[1;36m"
 NC="\033[0;00m"
+TEST_SET=./test_set
 
 main() {
+    if [ ! "$1" == "" ]; then
+        # Override the directory name
+        TEST_SET="$1"
+    fi
     mkdir -p output
-    FILES=$(ls ./test_set/)
+    FILES=$(cd ${TEST_SET} && find ./)
     for file in ${FILES}; do
+        path="${TEST_SET}/${file}"
+        # Skip parsing directories
+        if [ -d ${path} ]; then
+            # Create directories in output folder for putting output files in the same order
+            mkdir -p ./output/${file};
+            continue;
+        fi
         TIMES=0
         clean_redundant_files
-        prepare_hsail ./test_set/${file}
+        prepare_hsail ${path}
         # Occur some errors while preparing test file
         if [ "$?" != "0" ]; then
             continue;
         fi
         make_n_execute
-        # Occur some errors while preparing test file
+        # Occur some errors while making/executing
         if [ "$?" != "0" ]; then
             continue;
         fi
@@ -93,8 +105,8 @@ clean_redundant_files() {
     if [ -f result.log ]; then rm result.log; fi
 }
 
-if [ "$1" == "" ]; then
-    main
+if [ "$1" == "" ] || [ -d "$1" ]; then
+    main "$1"
 else
     single_test $1
 fi
