@@ -1,0 +1,3 @@
+//TIMES 100
+// %for.body don't touch register s0, s1
+neg_s_s16x2 $s2, $s2;

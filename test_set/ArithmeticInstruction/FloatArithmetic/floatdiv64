@@ -1,0 +1,3 @@
+//TIMES 5
+// %for.body don't touch register s0, s1
+div_f64 $d1, $d1, $d1;

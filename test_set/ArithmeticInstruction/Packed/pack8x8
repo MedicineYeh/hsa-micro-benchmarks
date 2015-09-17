@@ -1,0 +1,3 @@
+//TIMES 500
+// %for.body don't touch register s0, s1
+pack_u8x8_u32 $d2, $d2, $s2, 2;

@@ -1,0 +1,3 @@
+//TIMES 1000
+// %for.body don't touch register s0, s1
+min_f32 $s2, $s2, $s2;

@@ -1,0 +1,3 @@
+//TIMES 500
+// %for.body don't touch register s0, s1
+abs_f64 $d2, $d2;

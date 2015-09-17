@@ -1,0 +1,3 @@
+//TIMES 50
+// %for.body don't touch register s0, s1
+sub_sp_u8x8 $d2, $d2, $d2;

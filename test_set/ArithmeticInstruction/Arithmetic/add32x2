@@ -1,0 +1,3 @@
+//TIMES 500
+// %for.body don't touch register s0, s1
+add_pp_sat_u32x2 $d2, $d2, $d2;

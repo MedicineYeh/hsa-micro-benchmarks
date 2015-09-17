@@ -1,0 +1,3 @@
+//TIMES 5
+// %for.body don't touch register s0, s1
+rem_u64 $d1, $d1, 0x233412349456;

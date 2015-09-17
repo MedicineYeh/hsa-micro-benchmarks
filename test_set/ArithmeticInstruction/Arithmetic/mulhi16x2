@@ -1,0 +1,3 @@
+//TIMES 50
+// %for.body don't touch register $s0, $s1.
+mulhi_pp_u16x2 $s2, $s2, $s2;

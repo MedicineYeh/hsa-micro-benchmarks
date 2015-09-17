@@ -1,0 +1,3 @@
+//TIMES 500
+// %for.body don't touch register s0, s1
+sad_u32_u32 $s2, $s2, $s2, $s2;

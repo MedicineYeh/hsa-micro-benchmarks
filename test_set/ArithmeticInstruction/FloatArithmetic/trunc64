@@ -1,0 +1,3 @@
+//TIMES 10
+// %for.body don't touch register s0, s1
+trunc_f64 $d2, $d2;

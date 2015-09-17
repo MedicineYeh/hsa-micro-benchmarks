@@ -1,0 +1,3 @@
+//TIMES 100
+// %for.body don't touch register s0, s1
+nsqrt_f32 $s2, $s2;
