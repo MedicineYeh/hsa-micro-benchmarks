@@ -1,4 +1,4 @@
 //TIMES 500
 // %for.body don't touch register s0, s1
-neg_s64 $d1, $d1;
+neg_s64 $d3, $d3;
 

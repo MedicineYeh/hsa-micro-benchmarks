@@ -1,3 +1,3 @@
 //TIMES 10
 // %for.body don't touch register s0, s1
-floor_p_f32x2 $d2, $d2;
+floor_p_f32x2 $d3, $d3;

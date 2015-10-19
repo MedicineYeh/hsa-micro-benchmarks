@@ -1,3 +1,3 @@
 //TIMES 1000
 // %for.body don't touch register s0, s1
-floor_f64 $d2, $d2;
+floor_f64 $d3, $d3;

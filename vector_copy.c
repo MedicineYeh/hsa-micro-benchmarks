@@ -275,6 +275,9 @@ int main(int argc, char **argv)
     err=hsa_memory_register(out, GLOBAL_SIZE*4);
     check(Registering argument memory for output parameter, err);
 
+    int* dummy=(int*)malloc(GLOBAL_SIZE*4);
+    memset(dummy, 1, GLOBAL_SIZE*4);
+
     struct __attribute__ ((aligned(16))) args_t {
        	uint64_t global_offset_0;
 	uint64_t global_offset_1;
@@ -284,10 +287,12 @@ int main(int argc, char **argv)
 	uint64_t aqlwrap_pointer;
         void* in;
         void* out;
+        void* dummy;
     } args;
     memset(&args, 0, sizeof(args));
     args.in=in;
     args.out=out;
+    args.dummy=dummy;
 
     /*
      * Find a memory region that supports kernel arguments.

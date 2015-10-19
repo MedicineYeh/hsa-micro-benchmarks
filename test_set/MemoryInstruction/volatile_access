@@ -1,4 +1,4 @@
 //TIMES 10
 // %for.body don't touch register s0, s1
-ld_global_align(4)_u32	$s2, [$d1];
-st_global_align(4)_u32	$s2, [$d1];
+ld_global_align(4)_u32	$s2, [$d3];
+st_global_align(4)_u32	$s2, [$d3];

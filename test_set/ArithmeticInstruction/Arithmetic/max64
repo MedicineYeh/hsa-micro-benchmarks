@@ -1,3 +1,3 @@
 //TIMES 50
 // %for.body don't touch register s0, s1
-max_u64 $d1, $d1, 0x233412349456;
+max_u64 $d3, $d3, 0x233412349456;

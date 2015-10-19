@@ -1,6 +1,7 @@
 output
 obj
 &__OpenCL_vector_copy_kernel.isa
+amdhsa001.isa
 result.log
 *.brig
 *.hsail

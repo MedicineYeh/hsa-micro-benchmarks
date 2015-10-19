@@ -1,3 +1,3 @@
 //TIMES 500
 // %for.body don't touch register s0, s1
-max_pp_u32x2 $d2, $d2, $d2;
+max_pp_u32x2 $d3, $d3, $d3;
