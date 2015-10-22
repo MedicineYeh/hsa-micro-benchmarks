@@ -1,0 +1,6 @@
+//TIMES 200
+// %for.body don't touch register s0, s1
+//Be careful about s_waitcnt     vmcnt(0) & lgkmcnt(0) time
+ld_global_align(4)_u32	$s2, [$d3];
+add_u32	$s3, $s2, $s3;
+

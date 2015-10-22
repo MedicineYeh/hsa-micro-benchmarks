@@ -3,7 +3,7 @@
 #This is set in the argument of individual test set
 TIMES=0
 #This should be the same as the program loop size
-LOOP_SIZE=$((1000 * 10000))
+LOOP_SIZE=$((1000 * 1000))
 #These three are color code in terminal
 GREEN="\033[1;32m"
 BLUE="\033[1;36m"
