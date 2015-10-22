@@ -9,19 +9,20 @@ GREEN="\033[1;32m"
 BLUE="\033[1;36m"
 NC="\033[0;00m"
 TEST_SET=./test_set
+DEFAULT_NATIVE_ISA_FILE=amdhsa001.isa
 
 main() {
     if [ ! "$1" == "" ]; then
         # Override the directory name
         TEST_SET="$1"
     fi
-    mkdir -p output
-    mkdir -p isa
+    mkdir -p output isa
     FILES=$(cd ${TEST_SET} && find ./)
     for file in ${FILES}; do
         path="${TEST_SET}/${file}"
         # Skip parsing directories
         if [ -d ${path} ]; then
+            # Here, $file is a directory (name)
             # Create directories in output folder for putting output files in the same order
             mkdir -p ./output/${file};
             mkdir -p ./isa/${file};
@@ -39,15 +40,14 @@ main() {
         if [ "$?" != "0" ]; then
             continue;
         fi
-        mv amdhsa001.isa isa/${file}
+        cp ${DEFAULT_NATIVE_ISA_FILE} isa/${file}.isa
         parse_result ./output/${file}
         clean_redundant_files
     done
 }
 
 single_test() {
-    mkdir -p output
-    mkdir -p isa
+    mkdir -p output isa
     file=$1
     if [ -f $file ]; then
         TIMES=0
@@ -58,6 +58,7 @@ single_test() {
             return -1;
         fi
         make_n_execute
+        cp ${DEFAULT_NATIVE_ISA_FILE} isa/$(basename ${file}).isa
         parse_result ./output/$(basename ${file})
         clean_redundant_files
     else
