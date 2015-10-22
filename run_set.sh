@@ -16,6 +16,7 @@ main() {
         TEST_SET="$1"
     fi
     mkdir -p output
+    mkdir -p isa
     FILES=$(cd ${TEST_SET} && find ./)
     for file in ${FILES}; do
         path="${TEST_SET}/${file}"
@@ -23,6 +24,7 @@ main() {
         if [ -d ${path} ]; then
             # Create directories in output folder for putting output files in the same order
             mkdir -p ./output/${file};
+            mkdir -p ./isa/${file};
             continue;
         fi
         TIMES=0
@@ -37,6 +39,7 @@ main() {
         if [ "$?" != "0" ]; then
             continue;
         fi
+        mv amdhsa001.isa isa/${file}
         parse_result ./output/${file}
         clean_redundant_files
     done
@@ -44,6 +47,7 @@ main() {
 
 single_test() {
     mkdir -p output
+    mkdir -p isa
     file=$1
     if [ -f $file ]; then
         TIMES=0
@@ -94,7 +98,7 @@ make_n_execute() {
 parse_result() {
     T=$(cat ./result.log | awk '{print $3}')
     #This result is in nano seconds
-    T=$(echo "scale=3; 1000 * 1000 * ${T} / ${TIMES} / ${LOOP_SIZE}" | bc)
+    T=$(echo "scale=3; 1000 * 1000 * (${T}-194.3) / ${TIMES} / ${LOOP_SIZE}" | bc)
     #Add 0 to the start of the string if 0 is missing
     if [[ ${T:0:1} == "." ]] ; then T="0${T}"; fi
     echo "${T} ns" > ${1}.out
