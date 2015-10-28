@@ -10,6 +10,8 @@ BLUE="\033[1;36m"
 NC="\033[0;00m"
 TEST_SET=./test_set
 DEFAULT_NATIVE_ISA_FILE=amdhsa001.isa
+#This file would be aotomatically removed after preparing hsail code
+HSAIL_TEMP_FILE=./.hsail_tmp_file
 
 main() {
     if [ ! "$1" == "" ]; then
@@ -78,11 +80,15 @@ prepare_hsail() {
     LINE=$(grep -n "TAG_REPLACEMENT" sample_hsail | awk '{print $1}')
     #Remove redundant :
     LINE=$(echo ${LINE} | sed -e "s/://g")
-    sed ''${LINE}'r '${1}'' sample_hsail > vector_copy.hsail
-    for (( i=0; i<$((${TIMES}-1)); i++ ));
+
+    [[ -f ${HSAIL_TEMP_FILE} ]] && rm ${HSAIL_TEMP_FILE}
+    for (( i=0; i<$((${TIMES})); i++ ));
     do
-        sed -i ''${LINE}'r '${1}'' vector_copy.hsail
+        cat ${1} >> ${HSAIL_TEMP_FILE}
     done
+
+    sed ''${LINE}'r '${HSAIL_TEMP_FILE}'' sample_hsail > vector_copy.hsail
+    [[ -f ${HSAIL_TEMP_FILE} ]] && rm ${HSAIL_TEMP_FILE}
 
     return 0;
 }

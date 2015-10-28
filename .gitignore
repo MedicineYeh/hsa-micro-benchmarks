@@ -7,3 +7,4 @@ result.log
 *.brig
 *.hsail
 vector_copy
+.hsail_tmp_file
